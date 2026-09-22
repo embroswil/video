@@ -1,4 +1,5 @@
 import logging
+import os
 
 from dotenv import load_dotenv
 
@@ -14,7 +15,7 @@ from livekit.agents import (
     room_io,
 )
 from livekit.agents.llm import function_tool
-from livekit.plugins import cartesia, deepgram, groq, silero
+from livekit.plugins import cartesia, deepgram, groq, silero, simli
 
 logger = logging.getLogger("voice-agent")
 
@@ -78,6 +79,14 @@ async def entrypoint(ctx: JobContext) -> None:
         logger.info(f"Usage: {session.usage}")
 
     ctx.add_shutdown_callback(log_usage)
+
+    avatar = simli.AvatarSession(
+        simli_config=simli.SimliConfig(
+            api_key=os.getenv("SIMLI_API_KEY"),
+            face_id=os.getenv("SIMLI_FACE_ID"),
+        ),
+    )
+    await avatar.start(session, room=ctx.room)
 
     await session.start(
         agent=MyAgent(),

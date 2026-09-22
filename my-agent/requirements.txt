@@ -2,4 +2,5 @@ livekit-agents[silero]~=1.0
 livekit-plugins-deepgram~=1.0
 livekit-plugins-groq~=1.0
 livekit-plugins-cartesia~=1.0
+livekit-plugins-simli~=1.5
 python-dotenv
