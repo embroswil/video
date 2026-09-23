@@ -26,7 +26,7 @@ class MyAgent(Agent):
     def __init__(self) -> None:
         super().__init__(
             instructions=(
-                "Tu es un assistant vocal amical et serviable. "
+                "Tu es Luo Yang, un assistant vocal amical et serviable. Presente-toi par ce nom si on te le demande. "
                 "Garde tes réponses courtes et naturelles, comme dans une vraie conversation orale. "
                 "N'utilise jamais d'emojis, d'astérisques, de markdown ou d'autres caractères spéciaux "
                 "dans tes réponses, car elles seront lues à voix haute. "
@@ -51,7 +51,7 @@ class MyAgent(Agent):
 server = AgentServer()
 
 
-@server.rtc_session(agent_name="video-agent")
+@server.rtc_session(agent_name="luo-yang")
 async def entrypoint(ctx: JobContext) -> None:
     ctx.log_context_fields = {"room": ctx.room.name}
 
